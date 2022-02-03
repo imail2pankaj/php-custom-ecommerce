@@ -2,7 +2,7 @@
 $server_name ="localhost";
 $username = "root";
 $password = "";
-$db_name = "php_task";
+$db_name = "php-custom-ecommerce";
 
 require './stripe/stripe-php-master/init.php';
 $Publishablekey ="pk_test_51JaPaLFy07oVpwvgqV486jq5TEcNQTqvurzjOChGIuEy1dpH0DBf4Dtxpn77y9TPkP5tpCEEsGmM8P5yhULTJMQe00XW6Nmhlt";
