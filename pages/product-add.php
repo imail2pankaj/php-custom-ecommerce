@@ -23,9 +23,6 @@ if (isset($_POST['add-product'])) {
         $message .= '*Enter Product Price <br>';
     }
 
-    
-   
-
     if ($message == "") {
         if (move_uploaded_file($_FILES["product_image"]["tmp_name"], 'uploads/products/' . $_FILES["product_image"]["name"])) {
             $product_image = $_FILES["product_image"]["name"];

@@ -1,6 +1,4 @@
 <?php
-
-
 if (isset($_GET['id'])) {
     $query = "select catogary.catogary_name,product_name,product_image,product_desc,
     product.id,product_price,selling_price,product.created_at FROM product
@@ -8,7 +6,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($mysqli, $query);
     $count = mysqli_num_rows($result);
     if ($count == 1) {
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc(); 
         $product_name = $row['product_name'];
         $product_image = $row['product_image'];
         $selling_price = $row['selling_price'];
@@ -16,5 +14,4 @@ if (isset($_GET['id'])) {
         $product_desc = $row['product_desc'];
         $product_price = $row['product_price'];
     }
-    
 }

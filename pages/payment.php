@@ -1,6 +1,4 @@
 <?php
-
-
 $message = "";
 $user_id = $_SESSION['userid'];
 $cartItems = cartItems();
@@ -16,7 +14,6 @@ foreach ($cartItems as $cart) {
 
 $order_id = "";
 $address_id = $_POST['address_id'];
-
 
 $query = "insert into orders (user_id,address_id,totalprice) 
 values($user_id,$address_id,$price)";
