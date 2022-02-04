@@ -48,3 +48,25 @@ function orderPrefix($id)
     $total = 5 - strlen($id);
     return "OR" . str_repeat("0", $total) . $id;
 }
+function orderStatus($orderstatus)
+{
+    if ($orderstatus == 0) {
+        return "Pending";
+    } else if ($orderstatus == 1) {
+        return "Accepted";
+    } else if ($orderstatus == 2) {
+        return "Rejected";
+    } else if ($orderstatus == 3) {
+        return "Paid";
+    } else if ($orderstatus == 4) {
+        return "Failed";
+    } else if ($orderstatus == 5) {
+        return "Confirmed";
+    } else if ($orderstatus == 6) {
+        return "Shipped";
+    } else if ($orderstatus == 7) {
+        return "Completed";
+    } else if ($orderstatus == 8) {
+        return "Canceled";
+    }
+}
