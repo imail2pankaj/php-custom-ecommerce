@@ -35,11 +35,12 @@ include './pages/home-slider-list.php';
     </h2>
   </div>
   <div class="text-center">
-    <section class="regular slider mt-">
+    <section class="regular slider m-1">
       <?php
       for ($i = 0; $i < count($popularProducts); $i++) { ?>
         <div>
           <div style="height: 150px;width: 200px;">
+            <!-- <a href="wishlist.php" ><i class="far fa-heart m-2" style="float: right;"></i> </a> -->
             <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:90%;width: 98%;">
           </div>
           <a href="product-details.php?id=<?= $popularProducts[$i]['id'] ?>" class="text-decoration-none text-dark">

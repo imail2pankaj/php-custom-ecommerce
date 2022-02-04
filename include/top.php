@@ -65,6 +65,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user-circle"></i> <?php echo $_SESSION['first_name']; ?></a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="user-orders.php"><i class="fa fa-wallet"></i> Orders</a></li>
+          <li><a class="dropdown-item" href="wishlist.php"><i class="fas fa-heart"></i> Wishlist</a></li>
           <li><a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a></li>
           <li><a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Settings</a></li>
           <li><a class="dropdown-item" href="Logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
