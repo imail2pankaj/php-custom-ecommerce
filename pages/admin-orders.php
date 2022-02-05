@@ -14,11 +14,19 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'view-ord
         array_push($orderItem, $item);
     }
     $row['orderItem'] = $orderItem;
+    $row['created_at'] = formattedDateTime($row['created_at']);
+    $row['status'] = $row['order_status'];
+    $row['order_status'] = orderStatus($row['order_status']);
+
     header("Content-type:application/json");
     echo json_encode($row);
     exit;
 }
 
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'update-status') {
+    $query = "update orders set order_status = " . $_GET['status'] . " where orders.id =" . $_GET['id'];
+    $result = mysqli_query($mysqli, $query);
+} 
 
 $query = "select orders.*,user_address.name,user_address.phone,user_address.address,user_address.city,user_address.state from orders join user_address on orders.address_id = user_address.id order by id desc";
 $result = mysqli_query($mysqli, $query);
