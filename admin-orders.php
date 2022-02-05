@@ -72,21 +72,14 @@ include './include/top.php';
                                 Phone: <span id="phone"></span><br>
                             </address>
                         </div>
-                        <!-- /.col -->
                         <div class="col-sm-3 invoice-col">
-
                         </div>
-                        <!-- /.col -->
                         <div class="col-sm-5 invoice-col">
-
                             <b>Order ID:</b> <span id="order_id"> </span><br>
                             <b>Order Date:</b> <span id="created_at"></span><br>
                             <b>Status:</b> <span id="order_status"></span>
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
-                    <!-- Table row -->
                     <div class="row">
                         <div class="col-12 table-responsive">
                             <table class="table table-striped">
@@ -99,13 +92,10 @@ include './include/top.php';
                                     </tr>
                                 </thead>
                                 <tbody id="order_items">
-
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                     <div class="row">
                         <!-- accepted payments column -->
                         <div class="col-6">
@@ -119,7 +109,6 @@ include './include/top.php';
                                             <th style="width:50%">Subtotal:</th>
                                             <td id="sub_totalprice"></td>
                                         </tr>
-
                                         <tr>
                                             <th>Shipping:</th>
                                             <td class="text-success">free</td>
@@ -153,7 +142,6 @@ include './include/top.php';
                         </select>
                     </div>
                 </div>
-
                 <button type="button" class="update-status btn btn-outline-success " value="">Save</button>
                 <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal">Cancel</button>
             </div>
