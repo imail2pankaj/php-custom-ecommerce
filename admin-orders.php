@@ -51,7 +51,6 @@ include './include/top.php';
         </tbody>
     </table>
 </div>
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -97,10 +96,8 @@ include './include/top.php';
                         </div>
                     </div>
                     <div class="row">
-                        <!-- accepted payments column -->
                         <div class="col-6">
                         </div>
-                        <!-- /.col -->
                         <div class="col-6">
                             <div class="table-responsive">
                                 <table class="table">
