@@ -14,7 +14,7 @@ if (isset($_POST['signin'])) {
     if ($message == "") {
         $email = mysqli_real_escape_string($mysqli, $_POST['email']);
         $password = md5($_POST['password']);
-        $first_name = mysqli_real_escape_string($mysqli, $_POST['first_name']);
+        
         $query = "select * from users where email='$email' AND  password='$password'";
         $result = mysqli_query($mysqli, $query);
 

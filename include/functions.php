@@ -67,6 +67,10 @@ function orderStatus($orderstatus)
     } else if ($orderstatus == 7) {
         return "Completed";
     } else if ($orderstatus == 8) {
-        return "Canceled";
+        return "Cancelled";
+    }else if ($orderstatus == 9) {
+        return "Returned";
+    }else if ($orderstatus == 10) {
+        return "Refunded";
     }
 }

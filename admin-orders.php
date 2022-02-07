@@ -39,12 +39,21 @@ include './include/top.php';
                     <td scope="row"><?= $row['phone'] ?></td>
                     <td scope="row"><?= $row['city'] ?></td>
                     <td scope="row"><?= $row['totalprice'] ?></td>
-                    <td scope="row"><?= orderStatus($row['order_status']) ?> </td>
+                    <td scope="row">
+                        <?= orderStatus($row['order_status']) ?>
+                        <?php if ($row['order_status'] == 9) { ?>
+                            <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $row['return_order_desc'] ?>">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        <?php } ?>
+                    </td>
                     <td scope="row"><?= formattedDateTime($row['created_at']) ?> </td>
                     <td>
                         <button type="button" class="view-order-details btn btn-primary " value="<?= $row['id'] ?>" name="view" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             View
                         </button>
+
+
                     </td>
                 </tr>
             <?php } ?>
@@ -124,7 +133,7 @@ include './include/top.php';
             <div class="modal-footer">
                 <div class="row">
                     <input type="hidden" id="input_order_id">
-                    <div class="col-12">
+                    <div class="col-10">
                         <select class="form-select" id="input_order_status" aria-label="Default select example" name="order_status">
                             <option>Update Order Status</option>
                             <option value="0">Pending</option>
@@ -136,10 +145,11 @@ include './include/top.php';
                             <option value="6">Shipped</option>
                             <option value="7">Complete</option>
                             <option value="8">Cancel</option>
+                            
                         </select>
                     </div>
                 </div>
-                <button type="button" class="update-status btn btn-outline-success " value="">Save</button>
+                <button type="button" class="update-status btn btn-outline-success ">Save</button>
                 <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -197,6 +207,7 @@ include './include/top.php';
             url: url,
             success: function(output) {
                 $(".modal").modal("hide");
+                location.reload();
             },
             error: function(output) {
                 alert("Not Updated");
