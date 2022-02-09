@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Registration Page</title>
+  <title>PHP-ECOMMERCE</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -24,9 +24,6 @@
       <a class="py-2 d-none d-md-inline-block" href="index.php">Home</a>
       <a class="py-2 d-none d-md-inline-block" href="aboutus.php">About Us</a>
       <a class="py-2 d-none d-md-inline-block" href="contactus.php">Contact us</a>
-
-
-
       <?php
       // echo $_SESSION['user_type'];
       if (!isset($_SESSION['email'])) { ?>
@@ -42,7 +39,6 @@
           </div>
         </form>
       </div>
-      <a class="m-2" href="cart.php"><i class="fa fa-shopping-cart"></i> (<?= cartCounter(); ?>)</a>
       <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 1) {
       ?>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,15 +57,16 @@
 
       if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 2) {
       ?>
-
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user-circle"></i> <?php echo $_SESSION['first_name']; ?></a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="user-orders.php"><i class="fa fa-wallet"></i> Orders</a></li>
-          <li><a class="dropdown-item" href="wishlist.php"><i class="fas fa-heart"></i> Wishlist</a></li>
+          <li><a class="dropdown-item" href="cart.php"><i class="fa fa-shopping-cart"></i> Cart (<?= cartCounter(); ?>)</a></li>
+          <li><a class="dropdown-item" href="wishlist.php"><i class="far fa-heart"></i> Wishlist</a></li>
           <li><a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a></li>
           <li><a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Settings</a></li>
           <li><a class="dropdown-item" href="Logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
         </ul>
+        <a class="m-2" href="cart.php"><i class="fa fa-shopping-cart"></i> (<?= cartCounter(); ?>)</a>
       <?php } ?>
     </nav>
   </header>

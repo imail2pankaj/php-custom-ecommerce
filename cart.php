@@ -6,24 +6,18 @@ include './include/top.php';
 <div class="container">
     <div class="col-12 mt-3 ">
         <h6> <i class="fas fa-arrow-circle-left pe-auto" style="margin-top: 13px;" onclick="history.go(-1);"></i>
-
             <h3><i class="fa fa-shopping-cart"></i> Cart </h3>
-
             <?php if (cartCounter()) {
             ?>
                 <div class="row">
                     <div class="col-8 ">
-
                         <table class="table">
-
                             <thead>
                                 <tr>
-
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,7 +81,6 @@ include './include/top.php';
                                     <span><?php echo "$" . $price ?></span>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>
                                     <h5 style="font-weight: normal;">Items</h5>
@@ -96,7 +89,6 @@ include './include/top.php';
                                     <span><?= cartCounter(); ?></span>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>
                                     <span>Delivery Charges</span>
@@ -105,16 +97,13 @@ include './include/top.php';
                                     <span class="text-success"> FREE</span>
                                 </td>
                             </tr>
-
                             <td>
                                 <h4 style="font-weight: normal;"> Total Amount</h4>
                             </td>
                             <td>
                                 <span><b> <?php echo  "$" . $price; ?></b> </span>
                             </td>
-
                         </table>
-
                     </div>
                 </div>
             <?php } else {

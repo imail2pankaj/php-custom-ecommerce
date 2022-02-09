@@ -10,7 +10,7 @@ include './pages/home-slider-list.php';
     while ($row = mysqli_fetch_array($result)) {
     ?>
       <div class="carousel-item <?= $slide_counter == 0 ? 'active' : "" ?>">
-        <img src="./uploads/slides/<?= $row['slider_image'] ?>" class="d-block w-100 " alt="Image not found" height="580px">
+        <img src="./uploads/slides/<?= $row['slider_image'] ?>" class="d-block w-100 " alt="Image not found" height="520px">
         <div class="carousel-caption d-none d-md-block text-center">
           <h5 class="h3"><?= $row['slider_name'] ?></h5>
           <p class="h4"><?= $row['description'] ?></p>
@@ -35,13 +35,12 @@ include './pages/home-slider-list.php';
     </h2>
   </div>
   <div class="text-center">
-    <section class="regular slider m-1">
+    <section class="regular slider">
       <?php
       for ($i = 0; $i < count($popularProducts); $i++) { ?>
         <div>
           <div style="height: 150px;width: 200px;">
-            <!-- <a href="wishlist.php" ><i class="far fa-heart m-2" style="float: right;"></i> </a> -->
-            <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:90%;width: 98%;">
+            <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:90%;width: 97%;">
           </div>
           <a href="product-details.php?id=<?= $popularProducts[$i]['id'] ?>" class="text-decoration-none text-dark">
             <p class="h4"><?= $popularProducts[$i]['product_name'] ?></p>
@@ -61,8 +60,16 @@ include './pages/home-slider-list.php';
             }
             ?>
           </p>
-          <div class="text-center border-danger mb-1">
+          <div class="border-danger mb-1">
             <a class="btn btn-warning" href="cart.php?action=add-cart&id=<?= $popularProducts[$i]['id'] ?>"><i class="fa fa-plus"></i> ADD TO CART</a>
+            <div class="col-3" style="float: right;">
+              <?php if (in_array($popularProducts[$i]['id'], wishlistItems())) { ?>
+                <a class="btn btn-outline-danger btn-sm mt-1 " href="wishlist.php?action=remove-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="fas fa-heart fa-lg"></i> </a>
+              <?php } else { ?>
+                <a class="btn btn-outline-danger btn-sm mt-1 " href="wishlist.php?action=add-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="far fa-heart fa-lg"></i> </a>
+              <?php }
+              ?>
+            </div>
           </div>
         </div>
       <?php } ?>

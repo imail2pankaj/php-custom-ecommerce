@@ -34,7 +34,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'remove-c
     $cart = json_decode($cart);
     for ($i = 0; $i < count($cart); $i++) {
         if ($cart[$i]->id == $id) {
-
             array_splice($cart, $i, 1);
         }
     }

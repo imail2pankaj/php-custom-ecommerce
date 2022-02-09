@@ -7,18 +7,18 @@
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   color: black;
-  
+
 }
 
 .site-header a {
-  color: black ;
-  transition: color .15s ease-in-out ;
-  text-decoration: none ;
+  color: black;
+  transition: color .15s ease-in-out;
+  text-decoration: none;
 }
 
 .site-header a:hover {
-  color: #fff ;
-  text-decoration: none ;
+  color: #fff;
+  text-decoration: none;
 }
 
 .product-device {
@@ -61,23 +61,32 @@
   }
 }
 
-.fs-30{
+.fs-30 {
   font-size: 30px;
 }
-.fs-16{
+
+.fs-16 {
   font-size: 16px;
 }
-.fs-20{
+
+.fs-20 {
   font-size: 20px;
 }
-input[type=search]{
+
+input[type=search] {
   margin-top: 50px;
   width: 180px;
-  margin:0px;
-  height:35px;
+  margin: 0px;
+  height: 35px;
   display: inline;
 }
-.fs-18{
+
+.fs-18 {
   font-size: 18px;
   margin-left: 9px;
+}
+
+.fa-heart:hover {
+  color: red;
+  
 }

@@ -74,3 +74,10 @@ function orderStatus($orderstatus)
         return "Refunded";
     }
 }
+
+function wishlistItems()
+{
+    $wishlistItems = isset($_COOKIE["wishlist"]) ? $_COOKIE["wishlist"] : "[]";
+    $wishlistItems = json_decode($wishlistItems);
+    return $wishlistItems;
+}
