@@ -51,8 +51,10 @@ include './include/top.php';
                                             </div>
                                             <div class="col-3  p-3">
                                                 <span><?= "Quantity : " . $ordersItems['quantity'] ?></span><br><br><br><br>
-                                                <?php if ($order['order_status'] == 8) { ?>
-                                                    <span class="text-danger border">Order Cancelled </span>
+                                                <?php if ($order['order_status'] == 7) { ?>
+                                                    <button type="button" class="review btn btn-primary" data-product_id="<?= $ordersItems['id'] ?>" value="<?= $order['id'] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                                        Give a review
+                                                    </button>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -70,6 +72,9 @@ include './include/top.php';
                                                     Return Order
                                                 </button>
                                             <?php } ?>
+                                            <?php if ($order['order_status'] == 8) { ?>
+                                                <span class="text-danger border">Order Cancelled </span>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -78,6 +83,44 @@ include './include/top.php';
                     </div>
                 </div>
             <?php } ?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="product_id">
+                <h5 class="modal-title" id="exampleModalLabel">Rating & Review</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="textarea" class="text-muted">Description</label>
+                <textarea name="description" id="review_desc" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="modal-body">
+                <div class="rateit" data-rateit-mode="font" data-rateit-icon="" style="font-family:fontawesome">
+                </div>
+                <script src="./js/webfont.js"></script>
+                <script type="text/javascript">
+                    var configFontAwesome = {
+                        custom: {
+                            families: ['fontawesome'],
+                            urls: ['https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css']
+                        },
+                        fontactive: function() {
+                            $('.rateit-fa').rateit();
+                        }
+                    };
+                    WebFont.load(configFontAwesome);
+                </script>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="order_review">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="send_review btn btn-success">Submite Review</button>
+            </div>
         </div>
     </div>
 </div>
@@ -91,12 +134,12 @@ include './include/top.php';
             </div>
             <div class="modal-body">
                 <label for="textarea" class="text-muted">Reason</label>
-                <textarea name="reason" id="return_reason" class="form-control" rows="3" name="return_order_desc"></textarea>
+                <textarea name="reason" id="return_reason" class="form-control" rows="3" name="return_order_desc"><?= $row['id'] ?></textarea>
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="return_order">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="return-reason btn btn-primary" name="return_order_desc" value="<?= $row['id'] ?>">Continue</button>
+                <button type="button" class="return-reason btn btn-primary">Continue</button>
             </div>
         </div>
     </div>
@@ -156,6 +199,30 @@ include './include/top.php';
             url: url,
             success: function(output) {
                 location.reload();
+            },
+            error: function(output) {
+                alert("Not Updated");
+            }
+        });
+    });
+
+    $(document).on('click', '.review', function() {
+        var $data = $(this).val();
+        var product_id = $(this).data('product_id');
+
+        $('#order_review').val($data);
+        $('#product_id').val(product_id);
+    });
+    $(document).on('click', '.send_review', function() {
+        var $data = $('#order_review').val();
+        var $review_desc = $('#review_desc').val();
+        var product_id = $('#product_id').val();
+        var url = 'user-orders.php?action=send_review&id=' + $data + '&review_desc=' + $review_desc + '&product_id=' + product_id;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(output) {
+                $(".modal").modal("hide");
             },
             error: function(output) {
                 alert("Not Updated");

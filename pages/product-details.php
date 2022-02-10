@@ -15,3 +15,5 @@ if (isset($_GET['id'])) {
         $product_price = $row['product_price'];
     }
 }
+echo $query = "select * from order_review where order_id = " . $_GET['id']; 
+$result = mysqli_query($mysqli,$query);

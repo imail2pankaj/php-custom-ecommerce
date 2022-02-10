@@ -6,7 +6,7 @@ $query = "select orders.*,user_address.name,user_address.phone,user_address.addr
 $result = mysqli_query($mysqli, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {
-    $data = "select product.product_name, product.product_image, order_items.order_id,
+    $data = "select product.product_name,product.id, product.product_image, order_items.order_id,
     order_items.product_price,product.created_at,order_items.product_price, order_items.quantity FROM order_items JOIN product ON product.id = order_items.product_id where order_items.order_id = " . $row['id'];
     $view = mysqli_query($mysqli, $data);
     $orderItem = [];
@@ -26,8 +26,19 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'return-r
     $query = "update orders set order_status = 9 where orders.id =" . $_GET['id'];
     $result = mysqli_query($mysqli, $query);
 }
-  
+
 if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'return-reason') {
     $query = "update orders set return_order_desc='" . $_GET['return_reason'] . "' where orders.id =" . $_GET['id'];
     $result = mysqli_query($mysqli, $query);
+    exit;
+}
+
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'send_review') {
+    $user_id = $_SESSION['userid'];
+    $product_id = $_GET['product_id'];
+    $review = $_GET['review_desc'];
+    $order_id = $_GET['id'];
+    $query = "insert into order_review (user_id,product_id,order_id,reviews) values ('$user_id','$product_id','$order_id','$review')";
+    $result = mysqli_query($mysqli, $query);
+    // print_r($_SESSION);
 }

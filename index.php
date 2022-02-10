@@ -39,8 +39,8 @@ include './pages/home-slider-list.php';
       <?php
       for ($i = 0; $i < count($popularProducts); $i++) { ?>
         <div>
-          <div style="height: 150px;width: 200px;">
-            <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:90%;width: 97%;">
+          <div style="height: 150px;">
+            <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:100%;width: 100%;">
           </div>
           <a href="product-details.php?id=<?= $popularProducts[$i]['id'] ?>" class="text-decoration-none text-dark">
             <p class="h4"><?= $popularProducts[$i]['product_name'] ?></p>
@@ -62,7 +62,7 @@ include './pages/home-slider-list.php';
           </p>
           <div class="border-danger mb-1">
             <a class="btn btn-warning" href="cart.php?action=add-cart&id=<?= $popularProducts[$i]['id'] ?>"><i class="fa fa-plus"></i> ADD TO CART</a>
-            <div class="col-3" style="float: right;">
+            <div style="float: right;">
               <?php if (in_array($popularProducts[$i]['id'], wishlistItems())) { ?>
                 <a class="btn btn-outline-danger btn-sm mt-1 " href="wishlist.php?action=remove-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="fas fa-heart fa-lg"></i> </a>
               <?php } else { ?>
