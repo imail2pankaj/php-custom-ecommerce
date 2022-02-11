@@ -45,9 +45,8 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'send_rev
     exit;
     // print_r($_SESSION);
 }
+
 if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'update_review') {
-
-
     $review = $_GET['description'];
     $review_id = $_GET['review_id'];
     $title = $_GET['title'];
