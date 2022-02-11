@@ -34,16 +34,15 @@ include './include/top.php';
                 </div>
                 <div class="row">
                     <div class="col-6"></div>
-                    <div class="col-6 text-center fw-bold mt-5">
-                        <span class=" fs-20">
+                    <div class="col-6 border fw-bold mt-5 p-3">
+                        <span class="fs-20"><i class="fas fa-star"></i>
                             Rating & Reviews
                         </span>
                         <?php while ($row = mysqli_fetch_array($result)) { ?>
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5><?= $row['reviews'] ?></h5>
-                                    <h4><?= $row['rating'] ?></h4>
-                                </div>
+                            <div class="">
+                                <h4 class="mt-3 btn btn-success btn-sm"><?= $row['rating'] ?> <i class="fas fa-star fa-sm"></i></h4> <?= $row['review_title'] ?>
+                                <h5><?= $row['reviews'] ?></h5><br><br>
+                                <h6><?= $row['name'] ?></h6>
                             </div>
                         <?php } ?>
                     </div>

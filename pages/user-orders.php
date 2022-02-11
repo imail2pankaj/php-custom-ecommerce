@@ -36,9 +36,24 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'return-r
 if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'send_review') {
     $user_id = $_SESSION['userid'];
     $product_id = $_GET['product_id'];
-    $review = $_GET['review_desc'];
+    $review = $_GET['description'];
     $order_id = $_GET['id'];
-    $query = "insert into order_review (user_id,product_id,order_id,reviews) values ('$user_id','$product_id','$order_id','$review')";
+    $title = $_GET['title'];
+    $rate = $_GET['rate'];
+    $query = "insert into product_review (user_id,product_id,order_id,review_title,rating,reviews) values ('$user_id','$product_id','$order_id','$title','$rate','$review')";
     $result = mysqli_query($mysqli, $query);
+    exit;
+    // print_r($_SESSION);
+}
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] == 'update_review') {
+
+
+    $review = $_GET['description'];
+    $review_id = $_GET['review_id'];
+    $title = $_GET['title'];
+    $rate = $_GET['rate'];
+    echo $query = "update product_review SET reviews='$review',review_title='$title',rating='$rate',id = $review_id";
+    $result = mysqli_query($mysqli, $query);
+    exit;
     // print_r($_SESSION);
 }

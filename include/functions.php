@@ -68,9 +68,9 @@ function orderStatus($orderstatus)
         return "Completed";
     } else if ($orderstatus == 8) {
         return "Cancelled";
-    }else if ($orderstatus == 9) {
+    } else if ($orderstatus == 9) {
         return "Returned";
-    }else if ($orderstatus == 10) {
+    } else if ($orderstatus == 10) {
         return "Refunded";
     }
 }
@@ -80,4 +80,11 @@ function wishlistItems()
     $wishlistItems = isset($_COOKIE["wishlist"]) ? $_COOKIE["wishlist"] : "[]";
     $wishlistItems = json_decode($wishlistItems);
     return $wishlistItems;
+}
+
+function getProductOrderReview($mysqli, $product_id, $order_id)
+{
+    $query = "select * from product_review where product_id = $product_id and order_id= $order_id and user_id = " . $_SESSION['userid'];
+    $producreview = mysqli_query($mysqli, $query);
+    return mysqli_fetch_assoc($producreview);
 }

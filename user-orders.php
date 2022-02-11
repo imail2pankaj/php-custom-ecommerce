@@ -51,11 +51,19 @@ include './include/top.php';
                                             </div>
                                             <div class="col-3  p-3">
                                                 <span><?= "Quantity : " . $ordersItems['quantity'] ?></span><br><br><br><br>
-                                                <?php if ($order['order_status'] == 7) { ?>
-                                                    <button type="button" class="review btn btn-primary" data-product_id="<?= $ordersItems['id'] ?>" value="<?= $order['id'] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                                        Give a review
-                                                    </button>
-                                                <?php } ?>
+                                                <?php if ($order['order_status'] == 7) {
+                                                    $product_review = getProductOrderReview($mysqli, $ordersItems['id'], $order['id']);
+                                                    if ($product_review) { ?>
+                                                        <button type="button" class="review btn btn-primary" data-review_details='<?php echo json_encode($product_review) ?>' data-product_id="<?= $ordersItems['id'] ?>" value="<?= $order['id'] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                                            Edit review
+                                                        </button>
+                                                    <?php  } else { ?>
+                                                        <button type="button" class="review btn btn-primary" data-product_id="<?= $ordersItems['id'] ?>" value="<?= $order['id'] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                                            Submit a review
+                                                        </button>
+                                                    <?php }
+                                                    ?>
+                                                <?php }  ?>
                                             </div>
                                         </div>
                                     <?php  } ?>
@@ -90,37 +98,36 @@ include './include/top.php';
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <input type="hidden" id="product_id">
-                <h5 class="modal-title" id="exampleModalLabel">Rating & Review</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="textarea" class="text-muted">Description</label>
-                <textarea name="description" id="review_desc" class="form-control" rows="3"></textarea>
-            </div>
-            <div class="modal-body">
-                <div class="rateit" data-rateit-mode="font" data-rateit-icon="" style="font-family:fontawesome">
+            <form id="review_form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rating & Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <script src="./js/webfont.js"></script>
-                <script type="text/javascript">
-                    var configFontAwesome = {
-                        custom: {
-                            families: ['fontawesome'],
-                            urls: ['https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css']
-                        },
-                        fontactive: function() {
-                            $('.rateit-fa').rateit();
-                        }
-                    };
-                    WebFont.load(configFontAwesome);
-                </script>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" id="order_review">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="send_review btn btn-success">Submite Review</button>
-            </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="product_review">
+                    <input type="hidden" name="review_id" id="review_id">
+                    <input type="hidden" name="action" value="send_review" id="action">
+                    <input type="hidden" name="product_id" id="product_id" value="">
+                    <div class="form-group mb-2">
+                        <label for="textarea" class="text-muted d-block">Rate</label>
+                        <input type="hidden" class="form-control " value="0" name="rate" id="rate">
+                        <div class="rateit" data-rateit-resetable="false" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-step="1" data-rateit-max="5">
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="textarea" class="text-muted">Title</label>
+                        <input type="text" class="form-control" value="" name="title" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea" class="text-muted">Description</label>
+                        <textarea name="description" id="review_desc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="send_review btn btn-success">Submite Review</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -164,6 +171,8 @@ include './include/top.php';
     </div>
 </div>
 <?php include './include/bottom.php'; ?>
+<script src="./js/jquery.rateit.min.js"></script>
+<link rel="stylesheet" href="./css/rateit.css">
 <script>
     $(document).on('click', '.order-cancel', function() {
         var $data = $(this).val();
@@ -209,15 +218,33 @@ include './include/top.php';
     $(document).on('click', '.review', function() {
         var $data = $(this).val();
         var product_id = $(this).data('product_id');
+        var review_details = $(this).data('review_details');
+        if (review_details) {
+            $('#title').val(review_details.review_title);
 
-        $('#order_review').val($data);
+            $('#review_id').val(review_details.id);
+            $('#review_desc').val(review_details.reviews);
+            $('#action').val('update_review');
+            $('#rate').val(review_details.rating);
+            $('.rateit').rateit('value', review_details.rating)
+        } else {
+            $('#action').val('send_review');
+            $('#review_id').val(0);
+            $('#title').val('');
+            $('#review_desc').val('');
+            $('#rate').val(0);
+            $('.rateit').rateit('value', 0)
+
+
+        }
+        $('#product_review').val($data);
+
         $('#product_id').val(product_id);
     });
-    $(document).on('click', '.send_review', function() {
-        var $data = $('#order_review').val();
-        var $review_desc = $('#review_desc').val();
-        var product_id = $('#product_id').val();
-        var url = 'user-orders.php?action=send_review&id=' + $data + '&review_desc=' + $review_desc + '&product_id=' + product_id;
+    $("#review_form").on('submit', function(event) {
+        event.preventDefault();
+        var $data = $(this).serialize();
+        var url = 'user-orders.php?' + $data;
         $.ajax({
             type: 'GET',
             url: url,
@@ -228,5 +255,9 @@ include './include/top.php';
                 alert("Not Updated");
             }
         });
+    });
+
+    $(".rateit").bind('rated', function(event, value) {
+        $('#rate').val(value);
     });
 </script>

@@ -15,5 +15,7 @@ if (isset($_GET['id'])) {
         $product_price = $row['product_price'];
     }
 }
-echo $query = "select * from order_review where order_id = " . $_GET['id']; 
+$user_id = $_SESSION['userid'];
+echo $query = "select product_review.*,user_address.* from product_review join user_address where product_id = " . $_GET['id']; 
 $result = mysqli_query($mysqli,$query);
+// " and user_address.user_id = $user_id "
