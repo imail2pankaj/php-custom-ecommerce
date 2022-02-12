@@ -20,5 +20,6 @@ if (isset($_GET['id'])) {
 $popularProducts = popularProducts($mysqli);
 
 // echo "<pre>"; print_r($popularProducts);exit;
+
 $query = "select * from home_slides";
 $result = mysqli_query($mysqli, $query);

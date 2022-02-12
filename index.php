@@ -43,7 +43,7 @@ include './pages/home-slider-list.php';
             <img src="<?= './uploads/products/' . $popularProducts[$i]['product_image'] ?>" style="height:100%;width: 100%;">
           </div>
           <a href="product-details.php?id=<?= $popularProducts[$i]['id'] ?>" class="text-decoration-none text-dark">
-            <p class="h4"><?= $popularProducts[$i]['product_name'] ?></p>
+            <p class="h5"><?= $popularProducts[$i]['product_name'] ?></p>
           </a>
           <p>
             <?= $popularProducts[$i]['catogary_name'] ?><br>
@@ -73,6 +73,7 @@ include './pages/home-slider-list.php';
           </div>
         </div>
       <?php } ?>
+
     </section>
   </div>
 </div>

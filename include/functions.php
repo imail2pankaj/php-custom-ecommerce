@@ -85,6 +85,6 @@ function wishlistItems()
 function getProductOrderReview($mysqli, $product_id, $order_id)
 {
     $query = "select * from product_review where product_id = $product_id and order_id= $order_id and user_id = " . $_SESSION['userid'];
-    $producreview = mysqli_query($mysqli, $query);
-    return mysqli_fetch_assoc($producreview);
+    $productreview = mysqli_query($mysqli, $query);
+    return mysqli_fetch_assoc($productreview);
 }

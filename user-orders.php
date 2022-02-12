@@ -249,7 +249,9 @@ include './include/top.php';
             type: 'GET',
             url: url,
             success: function(output) {
+                location.reload();
                 $(".modal").modal("hide");
+
             },
             error: function(output) {
                 alert("Not Updated");
