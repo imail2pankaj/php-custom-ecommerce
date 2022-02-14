@@ -89,3 +89,6 @@ input[type=search] {
 .fa-heart:hover {
   color: red;
 }
+.fs-25 {
+  font-size: 25px;
+}

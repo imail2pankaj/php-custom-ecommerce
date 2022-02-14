@@ -145,7 +145,6 @@ include './include/top.php';
                             <option value="6">Shipped</option>
                             <option value="7">Complete</option>
                             <option value="8">Cancel</option>
-                            
                         </select>
                     </div>
                 </div>

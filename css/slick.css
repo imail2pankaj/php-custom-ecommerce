@@ -61,7 +61,7 @@
 }
 
 .slick-track:after {
-    clear: both;
+    clear:both
 }
 
 .slick-loading .slick-track {
@@ -112,7 +112,7 @@
     display: none;
 }
 .slick-slide {
-    margin: 0 10px;
+    margin: 0px 10px;
 }
 
 /* / the parent / */

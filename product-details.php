@@ -8,7 +8,7 @@ include './include/top.php';
         <div class="container">
             <form method="post" enctype="multipart/form-data">
                 <div class="mb-3 mt-4">
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-6 ">
                             <img src="<?= './uploads/products/' . $product_image ?>" width="100%" height="100%">
                         </div>
@@ -41,13 +41,13 @@ include './include/top.php';
                 </div>
                 <div class="container mb-3">
                     <div class="row text-center mt-2 ">
-                        <h2 class="text-secondary">Related Products</h2>
+                        <h2 class="text-secondary mt-3 mb-3">Related Products</h2>
                         <?php while ($row = mysqli_fetch_array($result)) { 
                             // echo "<pre>";print_r($row);exit;
                             ?>
                             <div class="col-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="<?= './uploads/products/' . $row['product_image'] ?>" alt="..." style="height:150px;width:100%;">
+                                    <img class="card-img-top" src="<?= './uploads/products/' . $row['product_image'] ?>" alt="..." style="height:100%;width:100%;">
                                     <div class="card-body p-0">
                                         <div class="text-center">
                                             <div class="col-12">

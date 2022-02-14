@@ -73,7 +73,6 @@ include './pages/home-slider-list.php';
           </div>
         </div>
       <?php } ?>
-
     </section>
   </div>
 </div>
