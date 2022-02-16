@@ -58,7 +58,7 @@
       dots: false,
       infinite: true,
       slidesToShow: 4,
-      slidesToScroll: 2,
+      slidesToScroll: 1,
       centerPadding: '60px',
       speed: 400,
       responsive: [{

@@ -87,7 +87,10 @@ input[type=search] {
 }
 
 .fa-heart:hover {
-  color: red;
+  background-position: 100% 0;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 .fs-25 {
   font-size: 25px;

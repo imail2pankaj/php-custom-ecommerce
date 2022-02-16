@@ -19,13 +19,15 @@ function popularProducts($mysqli)
 {
     $products = [];
     $query = "select catogary.catogary_name,product_name,product_image,product_price,product.catogary_id,
-    product.created_at,selling_price,product.id FROM catogary
+    product.created_at,selling_price,product.id,(SELECT AVG(rating) FROM `product_review` WHERE product_id = product.id) as product_rating FROM catogary
     INNER JOIN product ON product.catogary_id=catogary.id where product.status = 1 ORDER BY RAND() limit 8 ";
     $result = mysqli_query($mysqli, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         array_push($products, $row);
     }
+    // print($query);
     return $products;
+    
 }
 function cartCounter()
 {

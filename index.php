@@ -59,18 +59,23 @@ include './pages/home-slider-list.php';
               echo "$" . $popularProducts[$i]['product_price'];
             }
             ?>
-          </p>
-          <div class="border-danger mb-1">
-            <a class="btn btn-warning" href="cart.php?action=add-cart&id=<?= $popularProducts[$i]['id'] ?>"><i class="fa fa-plus"></i> ADD TO CART</a>
-            <div style="float: right;">
-              <?php if (in_array($popularProducts[$i]['id'], wishlistItems())) { ?>
-                <a class="btn btn-outline-danger btn-sm mt-1 " href="wishlist.php?action=remove-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="fas fa-heart fa-lg"></i> </a>
-              <?php } else { ?>
-                <a class="btn btn-outline-danger btn-sm mt-1 " href="wishlist.php?action=add-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="far fa-heart fa-lg"></i> </a>
-              <?php }
-              ?>
-            </div>
+            <?php if ($popularProducts[$i]['product_rating']) { ?>
+          <div class="btn btn-success btn-sm"><?= number_format($popularProducts[$i]['product_rating'], 1) ?> <i class="fas fa-star fa-sm"></i></div>
+        <?php } else { ?>
+         <p class="text-success">New </p>
+        <?php } ?>
+        </p>
+        <div class="border-danger mb-1">
+          <a class="btn btn-warning" href="cart.php?action=add-cart&id=<?= $popularProducts[$i]['id'] ?>"><i class="fa fa-plus"></i> ADD TO CART</a>
+          <div style="float: right;">
+            <?php if (in_array($popularProducts[$i]['id'], wishlistItems())) { ?>
+              <a class="btn btn-outline-danger btn-sm mt-1 me-2 " href="wishlist.php?action=remove-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="fas fa-heart fa-lg"></i> </a>
+            <?php } else { ?>
+              <a class="btn btn-outline-danger btn-sm mt-1 me-2 " href="wishlist.php?action=add-wishlist&id=<?= $popularProducts[$i]['id'] ?>"><i class="far fa-heart fa-lg"></i> </a>
+            <?php }
+            ?>
           </div>
+        </div>
         </div>
       <?php } ?>
     </section>
