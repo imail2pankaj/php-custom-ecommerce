@@ -141,7 +141,7 @@ include './include/top.php';
             </div>
             <div class="modal-body">
                 <label for="textarea" class="text-muted">Reason</label>
-                <textarea name="reason" id="return_reason" class="form-control" rows="3" name="return_order_desc"><?= $row['id'] ?></textarea>
+                <textarea name="reason" id="return_reason" class="form-control" rows="3" name="return_order_desc"></textarea>
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="return_order">
